@@ -10,10 +10,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.resumeDevice = "/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99";
+  nixpkgs.config.allowBroken = true;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
+  boot.kernelModules = [ "r8125" ];
 
+  boot.resumeDevice = "/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99";
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
-  "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   "resume=/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99"
   ];
 
@@ -29,6 +32,10 @@
 	          open = false;
   }; 
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Enable Steam
   programs.steam = {
@@ -101,6 +108,9 @@
      kitty
      pulsemixer
      (python3.withPackages (ps: with ps; [ requests ]))
+     vulkan-tools
+     less
+     
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
