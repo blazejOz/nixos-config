@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -15,18 +17,23 @@
   boot.kernelModules = [ "r8125" ];
 
   boot.resumeDevice = "/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99";
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
   "resume=/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99"
+  "nvidia.NVreg_PreserveVideoMemoryAllocations=1"    # ← preserves GPU state on sleep :contentReference[oaicite:0]{index=0}
+    "nvidia-drm.modeset=1"                              # ← ensures proper KMS path :contentReference[oaicite:1]{index=1}
   ];
 
   programs.hyprland.enable = true;
+
+  systemd.services."systemd-suspend.service".serviceConfig.Environment = lib.mkForce [
+    "SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"         # ← keeps Hyprland’s socket alive :contentReference[oaicite:3]{index=3}
+  ];
   
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
             modesetting.enable = true;
-            powerManagement.enable = false;
+            powerManagement.enable = true;
             package = config.boot.kernelPackages.nvidiaPackages.stable;
             nvidiaSettings = true;
 	          open = false;
@@ -110,7 +117,8 @@
      (python3.withPackages (ps: with ps; [ requests ]))
      vulkan-tools
      less
-     
+    protonup-qt
+    unzip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
