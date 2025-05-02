@@ -21,6 +21,8 @@
     grim
     slurp
     wl-clipboard
+
+    conky
   ];  
 
     gtk.cursorTheme = {
@@ -46,6 +48,9 @@
     source = ./waybar/toggle-charge.sh;
     executable = true;
 };
+
+  ##### CONKY
+  xdg.configFile."conky".source = ./conky;
 
 
 

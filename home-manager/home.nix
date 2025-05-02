@@ -25,7 +25,7 @@
 
   home.packages = with pkgs; [
 	  vlc
-	  qbittorrent 
+	  qbittorrent
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
