@@ -24,7 +24,7 @@
     rofi
     nautilus
 
-    conky
+
   ];  
 
     gtk.cursorTheme = {
@@ -51,8 +51,6 @@
     executable = true;
 };
 
-  ##### CONKY
-  #xdg.configFile."conky".source = ./conky;
 
 
 
