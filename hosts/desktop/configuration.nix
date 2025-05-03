@@ -20,7 +20,7 @@
   boot.kernelParams = [
   "resume=/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99"
   "nvidia.NVreg_PreserveVideoMemoryAllocations=1"    # ← preserves GPU state on sleep :contentReference[oaicite:0]{index=0}
-    "nvidia-drm.modeset=1"                              # ← ensures proper KMS path :contentReference[oaicite:1]{index=1}
+  "nvidia-drm.modeset=1"                             # ← ensures proper KMS path :contentReference[oaicite:1]{index=1}
   ];
 
   programs.hyprland.enable = true;
@@ -35,8 +35,9 @@
             modesetting.enable = true;
             powerManagement.enable = true;
             package = config.boot.kernelPackages.nvidiaPackages.stable;
+            #package = config.boot.kernelPackages.nvidiaPackages.latest;
             nvidiaSettings = true;
-	          open = false;
+	          open = true;
   }; 
 
   hardware.graphics = {

@@ -21,6 +21,8 @@
     grim
     slurp
     wl-clipboard
+    rofi
+    nautilus
 
     conky
   ];  
@@ -50,7 +52,7 @@
 };
 
   ##### CONKY
-  xdg.configFile."conky".source = ./conky;
+  #xdg.configFile."conky".source = ./conky;
 
 
 
