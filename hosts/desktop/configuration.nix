@@ -6,6 +6,8 @@
       ./hardware-configuration.nix
     ];
   
+  networking.hostName = "nixos-PC";
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
@@ -72,7 +74,7 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-  networking.hostName = "nixos-PC";
+  
 
   # Enable networking
   networking.networkmanager.enable = true;
