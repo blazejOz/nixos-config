@@ -6,7 +6,7 @@
       ./hardware-configuration.nix
     ];
   
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -22,8 +22,13 @@
   "nvidia.NVreg_PreserveVideoMemoryAllocations=1"    # ← preserves GPU state on sleep :contentReference[oaicite:0]{index=0}
   "nvidia-drm.modeset=1"                             # ← ensures proper KMS path :contentReference[oaicite:1]{index=1}
   ];
+  programs.uwsm.enable = true;
 
-  programs.hyprland.enable = true;
+  programs.hyprland ={
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
 
   systemd.services."systemd-suspend.service".serviceConfig.Environment = lib.mkForce [
     "SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"         # ← keeps Hyprland’s socket alive :contentReference[oaicite:3]{index=3}
@@ -107,8 +112,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
