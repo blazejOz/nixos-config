@@ -14,9 +14,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nixpkgs.config.allowBroken = true;
-  boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
-  boot.kernelModules = [ "r8125" ];
+  # nixpkgs.config.allowBroken = true;
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
+  # boot.kernelModules = [ "r8125" ];
 
   boot.resumeDevice = "/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99";
   boot.kernelParams = [
