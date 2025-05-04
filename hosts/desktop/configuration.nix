@@ -59,6 +59,7 @@
     dedicatedServer.openFirewall = true; # optional: allows hosting servers
   };
 
+
   # Enable bluetooth
   hardware.bluetooth = {
 	enable = true;
@@ -115,13 +116,13 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+
      firefox
      kitty
      pulsemixer
      (python3.withPackages (ps: with ps; [ requests ]))
      vulkan-tools
+     mesa-demos
      less
     protonup-qt
     unzip
