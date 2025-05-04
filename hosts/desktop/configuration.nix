@@ -14,9 +14,19 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # nixpkgs.config.allowBroken = true;
-  # boot.extraModulePackages = with config.boot.kernelPackages; [ r8125 ];
-  # boot.kernelModules = [ "r8125" ];
+  # Allow building the broken-in-nixpkgs driver:
+  nixpkgs.config.allowBroken = true;
+
+  # Tell NixOS to build & include this module in the initrd,
+  # against the exact kernel you shipped (6.6.x):
+  boot.extraModulePackages = [
+    pkgs.linuxKernel.packages.linux_6_6.r8125
+  ];
+
+  # Prevent the stock driver from ever claiming the card:
+  boot.extraModprobeConfig = ''
+    blacklist r8169
+  '';
 
   boot.resumeDevice = "/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99";
   boot.kernelParams = [
@@ -41,8 +51,8 @@
   hardware.nvidia = {
             modesetting.enable = true;
             powerManagement.enable = true;
-            package = config.boot.kernelPackages.nvidiaPackages.stable;
-            #package = config.boot.kernelPackages.nvidiaPackages.latest;
+            #package = config.boot.kernelPackages.nvidiaPackages.stable;
+            package = config.boot.kernelPackages.nvidiaPackages.latest;
             nvidiaSettings = true;
 	          open = true;
   }; 
@@ -116,7 +126,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-
      firefox
      kitty
      pulsemixer
