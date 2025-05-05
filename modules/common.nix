@@ -1,12 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
-  nixpkgs.config.allowUnfree = true;
-
-  programs.hyprland.enable = true;
+  environment.systemPackages = with pkgs; [
+    firefox
+    kitty
+    pulsemixer
+    (python3.withPackages (ps: with ps; [ requests ]))
+    less
+    unzip
+  ];
 
   # User
   users.users.blaz = {
@@ -48,16 +51,10 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
+  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
 
-  networking.networkmanager.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    firefox
-    kitty
-    cowsay
-  ];
 }

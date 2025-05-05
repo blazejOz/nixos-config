@@ -2,11 +2,14 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
+      /home/blaz/.dotfiles/modules/gaming.nix
+      /home/blaz/.dotfiles/modules/nvidia.nix
+      /home/blaz/.dotfiles/modules/common.nix
     ];
   
-  networking.hostName = "nixos-PC";
+  networking.hostName = "desktop";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -14,28 +17,34 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Allow building the broken-in-nixpkgs driver:
   nixpkgs.config.allowBroken = true;
 
-  # Tell NixOS to build & include this module in the initrd,
-  # against the exact kernel you shipped (6.6.x):
+  # Ethernet module for motherboard
   boot.extraModulePackages = [
     pkgs.linuxKernel.packages.linux_6_6.r8125
   ];
+  
+  #disable wakeup 
+  systemd.services.disable-wakeups = {
+    description = "Disable all wakeup sources except power button";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ]; # optional
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "disable-wakeups" ''
+        for f in /sys/bus/*/devices/*/power/wakeup; do
+          echo "disabled" > "$f"
+        done
+      '';
+    };
+  };
 
-  # Prevent the stock driver from ever claiming the card:
-  boot.extraModprobeConfig = ''
-    blacklist r8169
-  '';
-
-  boot.resumeDevice = "/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99";
-  boot.kernelParams = [
-  "resume=/dev/disk/by-uuid/0e875888-4c63-4731-93e9-fb5949292f99"
-  "nvidia.NVreg_PreserveVideoMemoryAllocations=1"    # ← preserves GPU state on sleep :contentReference[oaicite:0]{index=0}
-  "nvidia-drm.modeset=1"                             # ← ensures proper KMS path :contentReference[oaicite:1]{index=1}
-  ];
+  # Hyprland
   programs.uwsm.enable = true;
-
   programs.hyprland ={
     enable = true;
     withUWSM = true;
@@ -46,124 +55,10 @@
     "SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"         # ← keeps Hyprland’s socket alive :contentReference[oaicite:3]{index=3}
   ];
   
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-            modesetting.enable = true;
-            powerManagement.enable = true;
-            #package = config.boot.kernelPackages.nvidiaPackages.stable;
-            package = config.boot.kernelPackages.nvidiaPackages.latest;
-            nvidiaSettings = true;
-	          open = true;
-  }; 
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  # Enable Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # optional: allows Steam Remote Play
-    dedicatedServer.openFirewall = true; # optional: allows hosting servers
-  };
-
-
-  # Enable bluetooth
-  hardware.bluetooth = {
-	enable = true;
-	powerOnBoot = true;
-  };
-  # Audio
-   security.rtkit.enable = true;
-   services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
-  
 
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Warsaw";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pl_PL.UTF-8";
-    LC_IDENTIFICATION = "pl_PL.UTF-8";
-    LC_MEASUREMENT = "pl_PL.UTF-8";
-    LC_MONETARY = "pl_PL.UTF-8";
-    LC_NAME = "pl_PL.UTF-8";
-    LC_NUMERIC = "pl_PL.UTF-8";
-    LC_PAPER = "pl_PL.UTF-8";
-    LC_TELEPHONE = "pl_PL.UTF-8";
-    LC_TIME = "pl_PL.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.blaz = {
-    isNormalUser = true;
-    description = "blaz";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-     firefox
-     kitty
-     pulsemixer
-     (python3.withPackages (ps: with ps; [ requests ]))
-     vulkan-tools
-     mesa-demos
-     less
-    protonup-qt
-    unzip
-    nvitop
-  ];
-
+  system.stateVersion = "24.11"; 
   
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
-
 }
