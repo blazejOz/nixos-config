@@ -3,8 +3,8 @@
 {
 
   imports = [
-    ./hyprland/defaultHyprland.nix
-    #./neovim/defaultNvim.nix
+    ./hyprland/default.nix
+    ./neovim/default.nix
     #./bash/bash.nix
   ];
 
@@ -12,8 +12,6 @@
   home.username = "blaz";
   home.homeDirectory = "/home/blaz";
   nixpkgs.config.allowUnfree = true;
-  
-  home.stateVersion = "24.11"; # Please read the comment before changing.
   
   programs.vscode.enable = true;
 
@@ -63,6 +61,7 @@
     # EDITOR = "emacs";
   };
 
+  home.stateVersion = "24.11";
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
