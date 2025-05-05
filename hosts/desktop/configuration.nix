@@ -4,9 +4,9 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      /home/blaz/.dotfiles/modules/gaming.nix
-      /home/blaz/.dotfiles/modules/nvidia.nix
-      /home/blaz/.dotfiles/modules/common.nix
+      ../../modules/gaming.nix
+      ../../modules/nvidia.nix
+      ../../modules/common.nix
     ];
   
   networking.hostName = "desktop";
