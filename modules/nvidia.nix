@@ -42,7 +42,6 @@
 
 systemd.services.reload-nvidia-modules = {
   description = "Reload NVIDIA kernel modules after resume";
-  # Have it run *after* suspend, and make it part of the suspend.target
   after     = [ "suspend.target" ];
   wantedBy  = [ "suspend.target" ];
 

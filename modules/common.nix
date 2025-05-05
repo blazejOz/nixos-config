@@ -5,7 +5,6 @@
   environment.systemPackages = with pkgs; [
     firefox
     kitty
-    pulsemixer
     (python3.withPackages (ps: with ps; [ requests ]))
     less
     unzip

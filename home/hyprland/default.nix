@@ -23,7 +23,7 @@
     wl-clipboard
     rofi
     nautilus
-
+    pulsemixer 
 
   ];  
 
