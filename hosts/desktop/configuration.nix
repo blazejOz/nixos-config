@@ -13,9 +13,9 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   #AMD GPU
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
+#  boot.initrd.kernelModules = [ "amdgpu" ];
+#  services.xserver.enable = true;
+#  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
