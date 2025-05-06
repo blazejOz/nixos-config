@@ -5,13 +5,17 @@
     [ 
       ./hardware-configuration.nix
       ../../modules/gaming.nix
-      ../../modules/nvidia.nix
       ../../modules/common.nix
     ];
   
   networking.hostName = "desktop";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  #AMD GPU
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
