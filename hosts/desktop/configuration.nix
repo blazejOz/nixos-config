@@ -8,14 +8,27 @@
       ../../modules/common.nix
     ];
   
+  systemd.packages = with pkgs; [ 
+    
+  ];
+
   networking.hostName = "desktop";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   #AMD GPU
-#  boot.initrd.kernelModules = [ "amdgpu" ];
-#  services.xserver.enable = true;
-#  services.xserver.videoDrivers = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+   boot.kernelParams = ["amdgpu.noretry=0"];
+  # services.xserver.enable = false;
+  # services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.enableRedistributableFirmware = true;
+  
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -27,11 +40,6 @@
   # Allow building the broken-in-nixpkgs driver:
   nixpkgs.config.allowBroken = true;
 
-  # Ethernet module for motherboard
-  boot.extraModulePackages = [
-    pkgs.linuxKernel.packages.linux_6_6.r8125
-  ];
-  
   #disable wakeup 
   systemd.services.disable-wakeups = {
     description = "Disable all wakeup sources except power button";
@@ -55,9 +63,9 @@
     xwayland.enable = true;
   };
 
-  systemd.services."systemd-suspend.service".serviceConfig.Environment = lib.mkForce [
-    "SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"  # ← keeps Hyprland’s socket alive :contentReference[oaicite:3]{index=3}
-  ];
+#  systemd.services."systemd-suspend.service".serviceConfig.Environment = lib.mkForce [
+#    "SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"  # ← keeps Hyprland’s socket alive :contentReference[oaicite:3]{index=3}
+#  ];
   
 
   # Enable networking

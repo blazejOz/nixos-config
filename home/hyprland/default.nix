@@ -4,9 +4,10 @@
 
   home.packages = with pkgs; [
     #FONTS
-    nerdfonts
-    font-awesome
-    noto-fonts-emoji
+    # nerdfonts
+    # font-awesome
+    # noto-fonts-emoji
+    nerd-fonts.jetbrains-mono
 
     #cursor theme
     adwaita-icon-theme
@@ -25,9 +26,9 @@
     nautilus
     pulsemixer 
 
-  ];  
+  ];
 
-    gtk.cursorTheme = {
+  gtk.cursorTheme = {
     name = "Adwaita";
     size = 24;
     package = pkgs.adwaita-icon-theme;
