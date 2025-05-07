@@ -6,6 +6,8 @@
       ./hardware-configuration.nix
       ../../modules/gaming.nix
       ../../modules/common.nix
+      ../../modules/devtools.nix
+
     ];
   
   systemd.packages = with pkgs; [ 
