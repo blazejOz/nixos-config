@@ -11,7 +11,6 @@
 
   home.username = "blaz";
   home.homeDirectory = "/home/blaz";
-  nixpkgs.config.allowUnfree = true;
   
   programs.vscode.enable = true;
 
@@ -27,7 +26,7 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "nvim";/*  */
   };
 
   home.stateVersion = "24.11";
