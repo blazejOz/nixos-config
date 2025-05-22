@@ -8,7 +8,7 @@
     pgadmin4
 
     #python:
-    (python3.withPackages (ps: with ps; [ requests ]))
+    (python3.withPackages (ps: with ps; [ requests matplotlib]))
     
   ];
   
