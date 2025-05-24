@@ -5,6 +5,7 @@
     [ 
       ./hardware-configuration.nix
       ../../modules/common.nix
+      ../../modules/devtools.nix
     ];
   
   networking.hostName = "laptop";
