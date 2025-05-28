@@ -7,7 +7,10 @@
       ../../modules/common.nix
       ../../modules/devtools.nix
     ];
-  
+
+  environment.systemPackages = with pkgs; [
+    brightnessctl
+  ];
   networking.hostName = "laptop";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
