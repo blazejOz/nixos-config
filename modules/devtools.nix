@@ -9,6 +9,10 @@
 
     #python:
     (python3.withPackages (ps: with ps; [ requests matplotlib]))
+
+    gcc
+    gdb
+    nasm
     
   ];
   
