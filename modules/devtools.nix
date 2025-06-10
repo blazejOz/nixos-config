@@ -16,6 +16,15 @@
     
   ];
   
+services.postgresql = {
+    enable  = true;
+    package = pkgs.postgresql_15;
+
+    authentication = ''
+      local   all   all   peer
+    '';
+  };
+
 }
 
 
