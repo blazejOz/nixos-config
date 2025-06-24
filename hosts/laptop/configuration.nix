@@ -1,12 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      ../../modules/common.nix
-      ../../modules/devtools.nix
-    ];
 
   environment.systemPackages = with pkgs; [
     brightnessctl

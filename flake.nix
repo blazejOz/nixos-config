@@ -52,9 +52,18 @@
             home-manager.useUserPackages = true;
             home-manager.users.blaz = import ./home/home.nix;
           }
-          
+        
         ];
       };
+
+      server = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/server/configuration.nix
+          ./hosts/server/hardware-configuration.nix
+        ];
+      };
+
 
     };
   };
