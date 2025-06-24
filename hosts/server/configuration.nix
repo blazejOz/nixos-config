@@ -64,7 +64,13 @@
     description = "blaz";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHj18gJcd7cUY52PNnlM5An+Kvx5ZaGGfW0gyNlduKKJ PC"
+    ];
   };
+  services.openssh.enable = true;
+  services.openssh.settings.PermitRootLogin = "no";
+  services.openssh.settings.PasswordAuthentication = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
