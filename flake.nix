@@ -11,7 +11,12 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
 
-    nixosModules = import ./modules/modules-list.nix { lib = nixpkgs.lib; };
+    nixosModules = builtins.listToAttrs (
+      map (modulePath: {
+        name = builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf modulePath);
+        value = modulePath;
+      }) (import ./modules/modules-list.nix).imports
+    );
 
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
