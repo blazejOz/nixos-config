@@ -1,14 +1,14 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      ../../modules/gaming.nix
-      ../../modules/common.nix
-      ../../modules/devtools.nix
+  # imports =
+  #   [ 
+  #     ./hardware-configuration.nix
+  #     ../../modules/gaming.nix
+  #     ../../modules/common.nix
+  #     ../../modules/devtools.nix
 
-    ];
+  #   ];
   
   systemd.packages = with pkgs; [ 
     
@@ -22,7 +22,7 @@
 
   #AMD GPU
   boot.initrd.kernelModules = [ "amdgpu" ];
-   boot.kernelParams = ["amdgpu.noretry=0"];
+  boot.kernelParams = ["amdgpu.noretry=0"];
   # services.xserver.enable = false;
   # services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.enableRedistributableFirmware = true;

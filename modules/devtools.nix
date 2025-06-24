@@ -10,9 +10,13 @@
     #python:
     (python3.withPackages (ps: with ps; [ requests matplotlib reportlab]))
 
+    #c/c++
+    cmake
+    ncurses
     gcc
     gdb
     nasm
+
     
   ];
   

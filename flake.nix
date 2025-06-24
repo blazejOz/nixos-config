@@ -10,11 +10,18 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+
+    nixosModules = import ./modules/modules-list.nix { lib = nixpkgs.lib; };
+
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/desktop/configuration.nix
+          ./hosts/desktop/hardware-configuration.nix
+          self.nixosModules.common
+          self.nixosModules.devtools
+          self.nixosModules.gaming
 
           home-manager.nixosModules.home-manager
           {
@@ -30,6 +37,9 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/laptop/configuration.nix
+          ./hosts/laptop/hardware-configuration.nix
+          self.nixosModules.common
+          self.nixosModules.devtools
 
           home-manager.nixosModules.home-manager
           {
