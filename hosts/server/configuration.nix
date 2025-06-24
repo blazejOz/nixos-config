@@ -9,6 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+  services.getty.autologinUser = "blaz";
 
   networking.interfaces.enp2s0.ipv4.addresses = [{
     address = "192.168.0.20";
@@ -20,10 +22,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  #autologin on boot
-  services.getty.autoLogin.enable = true;
-  services.getty.autoLogin.user = "blaz";
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
