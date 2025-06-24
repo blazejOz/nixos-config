@@ -21,15 +21,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  #autologin on boot
+  services.getty.autoLogin.enable = true;
+  services.getty.autoLogin.user = "blaz";
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "home-server"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = "home-server"; 
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -58,7 +57,6 @@
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.blaz = {
     isNormalUser = true;
     description = "blaz";
