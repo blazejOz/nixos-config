@@ -25,8 +25,8 @@
           ./hosts/desktop/configuration.nix
           ./hosts/desktop/hardware-configuration.nix
           self.nixosModules.common
-          self.nixosModules.devtools
-          self.nixosModules.gaming
+          #self.nixosModules.devtools
+          #self.nixosModules.gaming
 
           home-manager.nixosModules.home-manager
           {
