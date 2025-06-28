@@ -11,7 +11,6 @@
   #AMD GPU
   boot.initrd.kernelModules = [ "amdgpu" ];
   hardware.enableAllFirmware = true;
-  hardware.firmware = with pkgs; [ linux-firmware ]; 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -24,20 +23,20 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  #disable wakeup 
-  # systemd.services.disable-wakeups = {
-  #   description = "Disable all wakeup sources except power button";
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "network.target" ]; # optional
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     ExecStart = pkgs.writeShellScript "disable-wakeups" ''
-  #       for f in /sys/bus/*/devices/*/power/wakeup; do
-  #         echo "disabled" > "$f"
-  #       done
-  #     '';
-  #   };
-  # };
+  # disable wakeup 
+  systemd.services.disable-wakeups = {
+    description = "Disable all wakeup sources except power button";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ]; # optional
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "disable-wakeups" ''
+        for f in /sys/bus/*/devices/*/power/wakeup; do
+          echo "disabled" > "$f"
+        done
+      '';
+    };
+  };
 
    # Hyprland
    programs.uwsm.enable = true;

@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager/";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -25,8 +25,8 @@
           ./hosts/desktop/configuration.nix
           ./hosts/desktop/hardware-configuration.nix
           self.nixosModules.common
-          #self.nixosModules.devtools
-          #self.nixosModules.gaming
+          self.nixosModules.devtools
+          self.nixosModules.gaming
 
            home-manager.nixosModules.home-manager
            {

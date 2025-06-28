@@ -8,6 +8,7 @@
     less
     unzip
     pciutils
+    usbutils
   ];
 
   # User
