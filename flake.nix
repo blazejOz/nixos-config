@@ -2,7 +2,7 @@
   description = "My NixOS + Home Manager flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,12 +28,12 @@
           #self.nixosModules.devtools
           #self.nixosModules.gaming
 
-          # home-manager.nixosModules.home-manager
-          # {
-          #   home-manager.useGlobalPkgs = true;
-          #   home-manager.useUserPackages = true;
-          #   home-manager.users.blaz = import ./home/home.nix;
-          # }
+           home-manager.nixosModules.home-manager
+           {
+             home-manager.useGlobalPkgs = true;
+             home-manager.useUserPackages = true;
+             home-manager.users.blaz = import ./home/home.nix;
+           }
           
         ];
       };

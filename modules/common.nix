@@ -7,6 +7,7 @@
     kitty
     less
     unzip
+    pciutils
   ];
 
   # User

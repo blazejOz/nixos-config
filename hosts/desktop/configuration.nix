@@ -6,11 +6,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   #AMD GPU
   boot.initrd.kernelModules = [ "amdgpu" ];
   hardware.enableAllFirmware = true;
+  hardware.firmware = with pkgs; [ linux-firmware ]; 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -38,13 +39,13 @@
   #   };
   # };
 
-  # Hyprland
-  # programs.uwsm.enable = true;
-  # programs.hyprland ={
-  #   enable = true;
-  #   withUWSM = true;
-  #   xwayland.enable = true;
-  # };
+   # Hyprland
+   programs.uwsm.enable = true;
+   programs.hyprland ={
+     enable = true;
+     withUWSM = true;
+     xwayland.enable = true;
+   };
 
   # Enable networking
   networking.networkmanager.enable = true;
