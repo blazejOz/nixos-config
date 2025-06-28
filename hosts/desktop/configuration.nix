@@ -1,9 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  systemd.packages = with pkgs; [ 
-    
-  ];
 
   networking.hostName = "desktop";
 
@@ -13,10 +10,6 @@
 
   #AMD GPU
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelParams = ["amdgpu.noretry=0"];
-  # services.xserver.enable = false;
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-  hardware.enableRedistributableFirmware = true;
   
   hardware.graphics = {
     enable = true;
@@ -55,11 +48,6 @@
     withUWSM = true;
     xwayland.enable = true;
   };
-
-#  systemd.services."systemd-suspend.service".serviceConfig.Environment = lib.mkForce [
-#    "SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"  # ← keeps Hyprland’s socket alive :contentReference[oaicite:3]{index=3}
-#  ];
-  
 
   # Enable networking
   networking.networkmanager.enable = true;

@@ -24,11 +24,6 @@
     xwayland.enable = true;
   };
 
-  # systemd.services."systemd-suspend.service".serviceConfig.Environment = lib.mkForce [
-  #   "SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"  # ← keeps Hyprland’s socket alive :contentReference[oaicite:3]{index=3}
-  # ];
-  
-
   # Enable networking
   networking.networkmanager.enable = true;
 
