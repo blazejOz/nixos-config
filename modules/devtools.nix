@@ -17,17 +17,19 @@
     gdb
     nasm
 
+    #VS code
+    vscode
     
   ];
   
-services.postgresql = {
-    enable  = true;
-    package = pkgs.postgresql_15;
+  services.postgresql = {
+      enable  = true;
+      package = pkgs.postgresql_15;
 
-    authentication = ''
-      local   all   all   peer
-    '';
-  };
+      authentication = ''
+        local   all   all   peer
+      '';
+    };
 
 }
 

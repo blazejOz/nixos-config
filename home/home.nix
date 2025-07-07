@@ -12,7 +12,7 @@
   home.username = "blaz";
   home.homeDirectory = "/home/blaz";
   
-  programs.vscode.enable = true;
+  #programs.vscode.enable = true;
 
   programs.git = {
     enable = true;
@@ -26,7 +26,7 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";/*  */
+    EDITOR = "nvim";
   };
 
   home.stateVersion = "24.11";

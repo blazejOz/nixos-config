@@ -9,6 +9,7 @@
     unzip
     pciutils
     usbutils
+    tree
   ];
 
   # User
