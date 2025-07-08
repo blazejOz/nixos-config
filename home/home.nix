@@ -3,8 +3,8 @@
 {
 
   imports = [
-    ./hyprland/default.nix
-    ./neovim/default.nix
+    ../modules/hyprland/default.nix
+    ../modules/neovim/default.nix
     #./bash/bash.nix
   ];
 
@@ -12,8 +12,6 @@
   home.username = "blaz";
   home.homeDirectory = "/home/blaz";
   
-  #programs.vscode.enable = true;
-
   programs.git = {
     enable = true;
     userName  = "blazejOz";
@@ -30,6 +28,5 @@
   };
 
   home.stateVersion = "24.11";
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
