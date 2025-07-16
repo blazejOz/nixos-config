@@ -5,7 +5,7 @@
   imports = [
     ../modules/hyprland/default.nix
     ../modules/neovim/default.nix
-    #./bash/bash.nix
+    ../modules/bash.nix
   ];
 
 
