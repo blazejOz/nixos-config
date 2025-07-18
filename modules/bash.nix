@@ -4,7 +4,7 @@
     enable = true;
     shellAliases = {
       ll = "ls -l";
-      ..  = "cd ..";
+      ".."  = "cd ..";
 
       #git
       gs = "git status";
