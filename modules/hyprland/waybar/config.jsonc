@@ -37,7 +37,7 @@
     },
   
     "clock": {
-      "format": "{:%d.%m.%Y  |  %H:%M}"
+      "format": "{:%H:%M  |  %d.%m.%Y}"
     },
   
     "backlight": {
