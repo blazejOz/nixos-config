@@ -1,91 +1,82 @@
-// -*- mode: jsonc -*-
 {
-  
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height
-    "spacing": 4, // Gaps between modules
-  
-    // Order of modules
-    "modules-left": [
-      "hyprland/workspaces"
-    ],
-  
-    "modules-center": [
-      "clock"
-    ],
-  
-    "modules-right": [
-      "pulseaudio",
-      "bluetooth",
-      "network",
-      "backlight",
-      "battery"
-    ],
-  
-    // Modules configuration
-    "hyprland/workspaces": {
-      "disable-scroll": true,
-      "all-outputs": true,
-      "warp-on-scroll": false,
-      "format": "{icon}"
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 5,
+
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-center": [
+    "clock"
+  ],
+
+  "modules-right": [
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "backlight",
+    "battery"
+  ],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}"
+  },
+
+  "clock": {
+    "format": "{:%H:%M  |  %d.%m.%Y}"
+  },
+
+  "backlight": {
+    "device": "",
+    "format": "{percent}% {icon}",
+    "format-icons": ["󰛩","󱩏", "󱩒", "󱩔", "󰛨"], // Brightness icons
+    "on-scroll-down": "brightnessctl set 5%-",
+    "on-scroll-up": "brightnessctl set +5%"
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
     },
-  
-    "clock": {
-      "format": "{:%H:%M  |  %d.%m.%Y}"
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% ",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""], // Battery levels
+    "on-click": "kitty ~/.config/waybar/toggle-charge.sh"
+  },
+
+  "network": {
+    "on-click": "kitty nmtui",
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪" // Disconnected icon
+  },
+
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "󰖁 {format_source}", // Muted icon
+    "format-icons": {
+      "headphone": "",
+      "default": ["", "", ""] // Volume levels
     },
-  
-    "backlight": {
-      "device": "",
-      "format": "{percent}% {icon}",
-      "format-icons": ["", "", "", ""],
-      "on-scroll-down": "brightnessctl set 5%-",
-      "on-scroll-up": "brightnessctl set +5%"
-    },
-  
-    "battery": {
-      "states": {
-        "warning": 30,
-        "critical": 15
-      },
-      "format": "{capacity}% {icon}",
-      "format-full": "{capacity}% {icon}",
-      "format-charging": "{capacity}% ",
-      "format-plugged": "{capacity}% ",
-      "format-alt": "{time} {icon}",
-      "format-icons": ["", "", "", "", ""],
-      "on-click": "kitty ~/.config/waybar/toggle-charge.sh"
-    },
-  
-    "network": {
-      "on-click": "kitty nmtui",
-      "format-wifi": "({signalStrength}%) ",
-      "format-ethernet": "",
-      "format-disconnected": "⚠"
-    },
-  
-    "pulseaudio": {
-      "format": "{volume}% {icon} ",
-      "format-bluetooth": "{volume}% {icon} ",
-      "format-muted": " {format_source}",
-      "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "default": ["", "", ""]
-      },
-      "on-click": "kitty pulsemixer"
-    },
-  
-    "bluetooth": {
-      "format": "",
-      "format-connected": "",
-      "on-click": "kitty bluetui",
-      "tooltip-format": "{controller_alias}\t{controller_address}",
-      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
-    }
+    "on-click": "kitty pulsemixer"
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-connected": "",
+    "on-click": "kitty bluetui",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+  }
 }
-  

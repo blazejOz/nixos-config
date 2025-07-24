@@ -2,6 +2,7 @@
 
 {
 
+
   environment.systemPackages = with pkgs; [
     firefox
     kitty
@@ -10,6 +11,11 @@
     pciutils
     usbutils
     tree
+  ];
+
+  #Font for hyprland
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
   ];
 
   # User

@@ -2,14 +2,10 @@
 
 {
 
+
   home.packages = with pkgs; [
     #FONTS
-    # nerdfonts
     # font-awesome
-    # noto-fonts-emoji
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.zed-mono
-    font-awesome
 
     #cursor theme
     adwaita-icon-theme

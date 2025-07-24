@@ -1,42 +1,32 @@
 * {
-    /*background-clip: padding-box;*/
-    font-family: "Roboto Mono Medium", Helvetica, Arial, sans-serif, FontAwesome;
+    font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 14px;
-
     min-height: 0;
 }
 
-
 window#waybar {
-    background-color: rgba(0, 0, 0, 1);
-    color: #ffffff;
-    /*border-style: solid;
-	border-width: 1px;
-	border-color: #33ccfe;*/
+    background-color: #000;
+    color: #fff;
 }
-
-
-
 
 #workspaces button {
     color: #bbbbbb;
     background: transparent;
-    border: none;
+    border: 2px solid transparent;
     box-shadow: none;
     font-weight: normal;
     margin: 0 3px;
     padding: 2px 8px;
     font-size: 16px;
-    border: 2px solid transparent;  /* reserve space for the border */
     border-radius: 6px;
     transition: border 0.2s;
 }
 
 #workspaces button.active {
     color: #ffffff;
-    border: 2px solid #89b4fa;   /* Just a colored border for the active workspace */
+    border: 2px solid #89b4fa;
     font-weight: bold;
-    background: transparent;      /* ensure no background color */
+    background: transparent;
 }
 
 #workspaces button.urgent {
@@ -44,171 +34,54 @@ window#waybar {
     border: 2px solid #f38ba8;
 }
 
-#mode {
-    background-color: #64727D;
-    /* border-bottom: 3px solid #ffffff; */
+/* Center clock stays smaller */
+#clock {
+    font-size: 16px;
+    margin: 0 8px;
+    background: #000;
+    color: #fff;
 }
 
-#clock,
+/* Make right side icons bigger and add spacing */
 #battery,
-#cpu,
-#memory,
-#temperature,
 #backlight,
 #network,
 #pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd {
-    padding: 0 10px;
-    margin: 6px 3px; 
-    color: #000000;
+#bluetooth {
+    font-size: 22px;
+    margin: 0 10px;
+    background: #000;
+    color: #fff;
 }
 
-#window,
+/* Battery states */
+#battery.charging {
+    color: #fff;
+}
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #fff;
+    animation: blink 0.5s linear infinite alternate;
+}
+@keyframes blink {
+    to {
+        background-color: #fff;
+        color: #000;
+    }
+}
+
+/* Disconnected network = red background */
+#network.disconnected {
+    background-color: #f53c3c;
+    color: #fff;
+}
+
+/* Muted audio */
+#pulseaudio.muted {
+    color: #888;
+}
+
 #workspaces {
     margin: 0 4px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    background-color: #000000;
-    color: white;
-}
-
-#battery {
-    background-color: #000000;
-    color: white;
-}
-
-#battery.charging {
-    color: #ffffff;
-    background-color: #000000;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#cpu {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-#memory {
-    background-color: #000000;
-    color: white;
-}
-
-#backlight {
-    background-color: #000000;
-    color:white;
-}
-
-#network {
-    background-color: #000000;
-    color:white;
-
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-#pulseaudio.muted {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #bbccdd;
-    color: #333333;
-    padding: 0 5px;
-    margin: 6px 3px;
-    min-width: 16px;
-}
