@@ -2,10 +2,7 @@
 
 {
 
-
   home.packages = with pkgs; [
-    #FONTS
-    # font-awesome
 
     #cursor theme
     adwaita-icon-theme
@@ -42,17 +39,13 @@
   xdg.configFile."hypr".source = ./hypr;
 
 
-  ########WAYBAR
+  ##### Waybar
   xdg.configFile."waybar/config.jsonc".source = ./waybar/config.jsonc;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   xdg.configFile."waybar/toggle-charge.sh" = {
     source = ./waybar/toggle-charge.sh;
     executable = true;
-};
-
-
-
-
+  };
 
   programs.kitty = {
     enable = true;
