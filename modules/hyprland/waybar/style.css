@@ -48,7 +48,7 @@ window#waybar {
 #network,
 #pulseaudio,
 #bluetooth {
-    font-size: 22px;
+    font-size: 20px;
     margin: 0 10px;
     background: #000;
     color: #fff;

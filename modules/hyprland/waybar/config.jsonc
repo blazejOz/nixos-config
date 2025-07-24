@@ -33,7 +33,7 @@
 
   "backlight": {
     "device": "",
-    "format": "{percent}% {icon}",
+    "format": "{icon} {percent}%",
     "format-icons": ["󰛩","󱩏", "󱩒", "󱩔", "󰛨"], // Brightness icons
     "on-scroll-down": "brightnessctl set 5%-",
     "on-scroll-up": "brightnessctl set +5%"
@@ -44,11 +44,10 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}% {icon}",
-    "format-full": "{capacity}% ",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ",
-    "format-alt": "{time} {icon}",
+    "format": "{icon} {capacity}%",
+    "format-full": " {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
     "format-icons": ["", "", "", "", ""], // Battery levels
     "on-click": "kitty ~/.config/waybar/toggle-charge.sh"
   },
@@ -61,8 +60,8 @@
   },
 
   "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon}",
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
     "format-muted": "󰖁 {format_source}", 
     "format-icons": {
       "headphone": "",
