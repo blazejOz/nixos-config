@@ -27,17 +27,21 @@ window#waybar {
     margin: 0 3px;
     padding: 2px 8px;
     font-size: 16px;
+    border: 2px solid transparent;  /* reserve space for the border */
+    border-radius: 6px;
+    transition: border 0.2s;
 }
 
 #workspaces button.active {
     color: #ffffff;
-    background: #a3c5fc;   /* or any color you like for highlight */
-    border-radius: 6px;
+    border: 2px solid #89b4fa;   /* Just a colored border for the active workspace */
     font-weight: bold;
+    background: transparent;      /* ensure no background color */
 }
 
 #workspaces button.urgent {
     color: #f38ba8;
+    border: 2px solid #f38ba8;
 }
 
 #mode {
