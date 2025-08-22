@@ -16,6 +16,7 @@
 
     #c/c++
     cmake
+    gnumake
     ncurses
     gcc
     gdb
