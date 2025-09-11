@@ -11,6 +11,7 @@
     waybar
     hyprpaper
     hyprpolkitagent
+    hyprlock
     mako
     libnotify
     bluetui
