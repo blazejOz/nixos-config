@@ -8,7 +8,7 @@
     pgadmin4
 
     #python:
-    (python3.withPackages (ps: with ps; [ requests matplotlib reportlab django]))
+    (python3.withPackages (ps: with ps; [ requests matplotlib reportlab]))
 
     #rust
     rustc
@@ -21,6 +21,9 @@
     gcc
     gdb
     nasm
+
+    #java
+    jdk
 
     #VS code
     vscode
