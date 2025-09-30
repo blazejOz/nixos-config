@@ -25,6 +25,10 @@
     #java
     jdk
 
+    #HDL
+    iverilog
+    gtkwave
+
     #VS code
     vscode
     
