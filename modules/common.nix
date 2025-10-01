@@ -11,6 +11,7 @@
     pciutils
     usbutils
     tree
+    foliate #ebook reader
   ];
 
   #Font for hyprland
