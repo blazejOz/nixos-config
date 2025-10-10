@@ -61,7 +61,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHj18gJcd7cUY52PNnlM5An+Kvx5ZaGGfW0gyNlduKKJ PC"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIByML2ORBVzfw5tNoi8fXCUYaJqGuwARwGOURgIVLzsK blaz@desktop"
     ];
   };
   services.openssh.enable = true;
