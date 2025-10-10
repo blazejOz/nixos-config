@@ -62,6 +62,7 @@
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIByML2ORBVzfw5tNoi8fXCUYaJqGuwARwGOURgIVLzsK blaz@desktop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMEUMCxG1Jvt/NYtdpqxa4dPboIVCuwMBd+E9xb7Zdwp blaz@laptop"
     ];
   };
   services.openssh.enable = true;
