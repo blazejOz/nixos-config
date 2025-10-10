@@ -13,7 +13,7 @@
       flswitch = "sudo nixos-rebuild switch --flake ";
       
       #server_ip
-      server_ip = "192.168.0.20";
+      home_server = "ssh blaz@192.168.0.20";
       
     };
   
