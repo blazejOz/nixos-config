@@ -14,8 +14,10 @@
   
   programs.git = {
     enable = true;
-    userName  = "blazejOz";
-    userEmail = "blazej.ozog@gmail.com";
+    settings.user = {
+      name  = "blazejOz";
+      email = "blazej.ozog@gmail.com";
+    };
   };
 
   home.packages = with pkgs; [
