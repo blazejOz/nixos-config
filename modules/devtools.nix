@@ -24,6 +24,7 @@
 
     #java
     jdk
+    maven
 
     #HDL
     iverilog
