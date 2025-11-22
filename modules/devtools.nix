@@ -29,6 +29,8 @@
     #bash
     bc
     
+    #simulation
+    scilab-bin
   ];
   
 }

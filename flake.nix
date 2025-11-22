@@ -29,6 +29,7 @@
           self.nixosModules.common
           self.nixosModules.devtools
           self.nixosModules.gaming
+          self.nixosModules.virtual
 
            home-manager.nixosModules.home-manager
            {
