@@ -4,5 +4,6 @@
     ./devtools.nix
     ./gaming.nix
     ./nvidia.nix
+    ./virtual.nix
   ];
 }
