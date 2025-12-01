@@ -19,13 +19,6 @@
   #   }];
   # };
 
-    services.zerotierone = {
-      enable = true;
-      joinNetworks = [
-        "E4DA7455B2ABF745"
-      ];
-    };
-
   networking.hostName = "laptop";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
