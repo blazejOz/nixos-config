@@ -27,7 +27,7 @@
     maven
 
     #VS code
-    vscode
+    vscode.fhs
 
     #bash
     bc
