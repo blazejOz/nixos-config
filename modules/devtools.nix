@@ -19,12 +19,15 @@
     gdb
     nasm
 
+    #raylib
+    raylib
+
     #java
     jdk
     maven
 
     #VS code
-    vscode
+    vscode.fhs
 
     #bash
     bc
@@ -33,6 +36,8 @@
     scilab-bin
   ];
   
+  programs.direnv.enable = true;
+
 }
 
 
