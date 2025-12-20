@@ -7,6 +7,7 @@
     #cursor theme
     adwaita-icon-theme
     
+
     #Hyprland
     waybar
     hyprpaper
@@ -33,6 +34,9 @@
   home.sessionVariables = {
     XCURSOR_THEME = "Adwaita";
     XCURSOR_SIZE = "24";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    PIPEWIRE_VIDEO_RATE = "60";
   };
 
 

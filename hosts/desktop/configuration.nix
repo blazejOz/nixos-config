@@ -46,6 +46,22 @@
      xwayland.enable = true;
    };
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+        # FORCE ScreenCast to use Hyprland
+        "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
+        "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+      };
+    };
+  };
+
   # Enable networking
   networking.networkmanager.enable = true;
 
