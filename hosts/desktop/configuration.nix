@@ -38,13 +38,13 @@
     };
   };
 
-   # Hyprland
-   programs.uwsm.enable = true;
-   programs.hyprland ={
-     enable = true;
-     withUWSM = true;
-     xwayland.enable = true;
-   };
+  #  # Hyprland
+  #  programs.uwsm.enable = true;
+  #  programs.hyprland ={
+  #    enable = true;
+  #    withUWSM = true;
+  #    xwayland.enable = true;
+  #  };
 
   xdg.portal = {
     enable = true;
@@ -53,12 +53,12 @@
       common = {
         default = [ "gtk" ];
       };
-      hyprland = {
-        default = [ "hyprland" "gtk" ];
-        # FORCE ScreenCast to use Hyprland
-        "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
-        "org.freedesktop.impl.portal.Screenshot" = "hyprland";
-      };
+      # hyprland = {
+      #   default = [ "hyprland" "gtk" ];
+      #   # FORCE ScreenCast to use Hyprland
+      #   "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
+      #   "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+      # };
     };
   };
 

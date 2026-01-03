@@ -30,6 +30,7 @@
           self.nixosModules.devtools
           self.nixosModules.gaming
           self.nixosModules.virtual
+          self.nixosModules.plasma
 
            home-manager.nixosModules.home-manager
            {

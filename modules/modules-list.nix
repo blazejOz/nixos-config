@@ -5,5 +5,6 @@
     ./gaming.nix
     ./nvidia.nix
     ./virtual.nix
+    ./plasma.nix
   ];
 }
