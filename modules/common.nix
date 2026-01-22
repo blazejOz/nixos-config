@@ -3,6 +3,12 @@
 {
 
 
+  services.udev.extraRules = ''
+    # Raspberry Pi Pico (RP2040/RP2350)
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", MODE="0666", GROUP="wheel"
+  '';
+
+
   environment.systemPackages = with pkgs; [
     firefox
     kitty

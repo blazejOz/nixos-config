@@ -13,24 +13,17 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
 
-    nixosModules = builtins.listToAttrs (
-      map (modulePath: {
-        name = builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf modulePath);
-        value = modulePath;
-      }) (import ./modules/modules-list.nix).imports
-    );
-
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/desktop/configuration.nix
           ./hosts/desktop/hardware-configuration.nix
-          self.nixosModules.common
-          self.nixosModules.devtools
-          self.nixosModules.gaming
-          self.nixosModules.virtual
-          self.nixosModules.plasma
+          ./modules/common.nix
+          ./modules/devtools.nix
+          ./modules/gaming.nix
+          ./modules/virtual.nix
+          ./modules/plasmaKDE/plasma.nix
 
            home-manager.nixosModules.home-manager
            {
@@ -47,8 +40,8 @@
         modules = [
           ./hosts/laptop/configuration.nix
           ./hosts/laptop/hardware-configuration.nix
-          self.nixosModules.common
-          self.nixosModules.devtools
+          ./modules/common.nix
+          ./modules/devtools.nix
 
           home-manager.nixosModules.home-manager
           {
