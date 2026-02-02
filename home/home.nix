@@ -3,7 +3,6 @@
 {
 
   imports = [
-    ../modules/hyprland/default.nix
     ../modules/neovim/default.nix
     ../modules/bash.nix
   ];

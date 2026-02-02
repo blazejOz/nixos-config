@@ -10,6 +10,7 @@
 
 
   environment.systemPackages = with pkgs; [
+    wget
     firefox
     kitty
     less

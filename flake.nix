@@ -42,6 +42,7 @@
           ./hosts/laptop/hardware-configuration.nix
           ./modules/common.nix
           ./modules/devtools.nix
+          ./modules/plasmaKDE/plasma.nix
 
           home-manager.nixosModules.home-manager
           {
