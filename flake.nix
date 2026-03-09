@@ -22,7 +22,7 @@
           ./modules/common.nix
           ./modules/devtools.nix
           ./modules/gaming.nix
-          ./modules/virtual.nix
+          #./modules/virtual.nix
           ./modules/plasmaKDE/plasma.nix
 
            home-manager.nixosModules.home-manager

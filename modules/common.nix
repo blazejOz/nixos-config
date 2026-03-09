@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     wget
+    brave
     firefox
     kitty
     less
